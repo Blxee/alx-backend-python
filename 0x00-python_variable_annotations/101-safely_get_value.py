@@ -10,6 +10,11 @@ def safely_get_value(dct: Mapping,
                      key: Any,
                      default: Union[T, None] = None
                      ) -> Union[Any, T]:
+    """Sets a value safely in a dict
+
+    Returns:
+        the value
+    """
     if key in dct:
         return dct[key]
     else:
