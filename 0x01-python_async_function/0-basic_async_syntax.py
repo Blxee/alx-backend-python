@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """0. The basics of async"""
-from random import uniform
 from asyncio import sleep
+from random import uniform
 
 
 async def wait_random(max_delay: int = 10) -> float:
