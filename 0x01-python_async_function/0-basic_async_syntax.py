@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""0. The basics of async"""
-
-
+"""
+0. The basics of async
+"""
 from asyncio import sleep
 from random import uniform
 
