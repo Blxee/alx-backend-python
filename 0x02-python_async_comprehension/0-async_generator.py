@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """0. Async Generator"""
 from random import uniform
-from typing import Generator
+from typing import AsyncGenerator
 from time import sleep
 
 
-async def async_generator() -> Generator[float, None, None]:
+async def async_generator() -> AsyncGenerator[float, None]:
     """Generator that yields 10 numbers between 0-10.
 
     Returns:
