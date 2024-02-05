@@ -2,6 +2,7 @@
 """Module for testing functions in utils.py file."""
 from parameterized import parameterized
 import unittest
+from unittest.mock import Mock, patch
 from utils import *
 
 
@@ -25,3 +26,19 @@ class TestAccessNestedMap(unittest.TestCase):
         """Test access_nested_map exception."""
         with self.assertRaises(KeyError, msg=f"'{err}'"):
             access_nested_map(map, path)
+
+
+class TestGetJson(unittest.TestCase):
+    """Test suit for get_json function."""
+
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False}),
+    ])
+    @patch('requests.get')
+    def test_get_json(self, test_url, payload, mock_get):
+        mock_json = Mock()
+        mock_json.json.return_value = payload
+        mock_get.return_value = mock_json
+        get_json(test_url)
+        mock_get.asset_called_once()
