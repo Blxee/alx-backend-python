@@ -22,7 +22,10 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.GithubOrgClient.org')
     def test_public_repos_url(self, mock_org):
         """Tests public_repos method from GithubOrgClient."""
-        pass
+        payload = {'repos_url': 12345}
+        mock_org.return_value = payload
+        client = GithubOrgClient('abc')
+        self.assertEqual(client._public_repos_url, payload['repos_url'])
 
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
