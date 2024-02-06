@@ -19,6 +19,11 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch('utils.get_json') as mock_get_json:
             mock_get_json.assert_called_once()
 
+    @patch('client.GithubOrgClient.org')
+    def test_public_repos_url(self, mock_org):
+        """Tests public_repos method from GithubOrgClient."""
+        pass
+
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Test suit for GithubOrgClient class"""
