@@ -2,7 +2,7 @@
 """Module for testing functions in client.py module"""
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 import unittest
 from unittest.mock import patch
 
@@ -39,6 +39,7 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_get_json.assert_called_once()
 
 
+@parameterized_class(())
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Test suit for GithubOrgClient class"""
 
