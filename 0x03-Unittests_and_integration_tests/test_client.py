@@ -18,6 +18,8 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch('utils.get_json') as mock_get_json:
             mock_get_json.assert_called_once()
 
+
+class TestIntegrationGithubOrgClient(unittest.TestCase):
     def test_public_repos(self):
         pass
 
