@@ -13,10 +13,11 @@ class TestGithubOrgClient(unittest.TestCase):
         ('google'),
         ('abc'),
     ])
-    def test_org(self, org):
+    @patch('utils.get_json')
+    def test_org(self, mock_get_json, org):
         """Tests org method from GithubOrgClient."""
-        with patch('utils.get_json') as mock_get_json:
-            mock_get_json.assert_called_once()
+        GithubOrgClient(org).org()
+        mock_get_json.assert_called_once()
 
     @patch('client.GithubOrgClient.org')
     def test_public_repos_url(self, mock_org):
@@ -31,7 +32,9 @@ class TestGithubOrgClient(unittest.TestCase):
         """Tests public_repos method from GithubOrgClient."""
         payload = {'repos_url': 12345}
         mock_get_json.return_value = payload
-        mock_get_json.assert_called_once()
+        client = GithubOrgClient('abc')
+        with patch.object(GithubOrgClient, '_public_repos_url') as patched:
+            mock_get_json.assert_called_once()
 
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
