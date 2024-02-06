@@ -43,9 +43,17 @@ class TestGithubOrgClient(unittest.TestCase):
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Test suit for GithubOrgClient class"""
 
+    @classmethod
+    def setUpClass(cls):
+        pass
+
     def test_public_repos(self):
         """Tests public_repos method from GithubOrgClient."""
         pass
 
     def test_public_repos_with_license(self):
         """Tests public_repos_with_license method from GithubOrgClient."""
+
+    @classmethod
+    def tearDownClass(cls):
+        pass
