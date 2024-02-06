@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Module for testing functions in client.py module"""
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 from parameterized import parameterized
 import unittest
 from unittest.mock import patch
@@ -16,7 +17,8 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('utils.get_json')
     def test_org(self, mock_get_json, org):
         """Tests org method from GithubOrgClient."""
-        GithubOrgClient(org).org()
+        with patch('client.GithubOrgClient.org'):
+            GithubOrgClient(org).org()
         mock_get_json.assert_called_once()
 
     @patch('client.GithubOrgClient.org')
