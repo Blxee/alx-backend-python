@@ -14,14 +14,19 @@ class TestGithubOrgClient(unittest.TestCase):
         ('abc'),
     ])
     def test_org(self, org):
+        """Tests org method from GithubOrgClient."""
         client = GithubOrgClient(org)
         with patch('utils.get_json') as mock_get_json:
             mock_get_json.assert_called_once()
 
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """Test suit for GithubOrgClient class"""
+
     def test_public_repos(self):
+        """Tests public_repos method from GithubOrgClient."""
         pass
 
     def test_public_repos_with_license(self):
+        """Tests public_repos_with_license method from GithubOrgClient."""
         pass
