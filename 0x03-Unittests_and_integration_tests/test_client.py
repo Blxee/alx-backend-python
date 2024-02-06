@@ -15,7 +15,6 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_org(self, org):
         """Tests org method from GithubOrgClient."""
-        client = GithubOrgClient(org)
         with patch('utils.get_json') as mock_get_json:
             mock_get_json.assert_called_once()
 
@@ -32,9 +31,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """Tests public_repos method from GithubOrgClient."""
         payload = {'repos_url': 12345}
         mock_get_json.return_value = payload
-        client = GithubOrgClient('abc')
-        with patch.object(GithubOrgClient, '_public_repos_url') as patched:
-            mock_get_json.assert_called_once()
+        mock_get_json.assert_called_once()
 
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
