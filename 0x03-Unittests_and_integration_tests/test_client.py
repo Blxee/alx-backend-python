@@ -38,8 +38,21 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch.object(GithubOrgClient, '_public_repos_url') as patched:
             mock_get_json.assert_called_once()
 
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license"),
+        ({"license": {"key": "other_license"}}, "my_license")
+    ])
+    def test_has_license(self, repo, license_key):
+        """Tests has_license method from GithubOrgClient."""
+        self.assertTrue(
+            GithubOrgClient('abc').has_license(repo, license_key)
+        )
 
-@parameterized_class(())
+
+@parameterized_class(
+    ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
+    TEST_PAYLOAD
+)
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Test suit for GithubOrgClient class"""
 
