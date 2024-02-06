@@ -37,8 +37,30 @@ class TestGetJson(unittest.TestCase):
     ])
     @patch('requests.get')
     def test_get_json(self, test_url, payload, mock_get):
+        """Tests get_json function"""
         mock_json = Mock()
         mock_json.json.return_value = payload
         mock_get.return_value = mock_json
         get_json(test_url)
         mock_get.asset_called_once()
+
+
+class TestMemoize(unittest.TestCase):
+    """Test suit for memoize function."""
+
+    def test_memoize(self):
+        """Tests memoize function."""
+        class TestClass:
+
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        my_test_class = TestClass()
+        with patch.object(my_test_class, 'a_method') as mock_a_method:
+            my_test_class.a_property
+            my_test_class.a_property
+            mock_a_method.assert_called_once()
